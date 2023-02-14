@@ -31,8 +31,8 @@ class Actions:
     @staticmethod
     async def get_entire_sheet_data():
 
-        response = []
-        message = ""
+        rows = []
+        response = ""
         creds = get_credentials()
 
         try:
@@ -44,16 +44,18 @@ class Actions:
             values = result.get('values', [])
 
             if not values:
-                return('No data found.')
+                raise Exception('No data found!')
 
-            for row in values:
-                response.append("".join(row))
+            for v in values:
+                rows.append("".join(v))
 
-            message = "\n".join(response)[:1000]
-            return message
+            response = "\n".join(rows)[:1000]
 
         except HttpError as err:
-            message = f"Opa, um erro foi encontrado!"
+            response = f"Opa, deu erro!"
             if Settings.DEBUG:
-                message += f" ({str(err)})"
-            return message
+                response += f"({str(err)})"
+            return response
+
+        finally:
+            return response
