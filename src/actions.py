@@ -21,10 +21,12 @@ class Actions:
                 f"Então, você correu {distance} km em {minutes} minutos?\n\n"
                 f"Quer que eu registre isso na planilha com a data de {today}? (S/N?)"
             )
+
         except Exception as e:
             response = "Foi mal, não entendi nada, repete por favor."
             if Settings.DEBUG:
                 response += f"({str(e)})"
+
         finally:
             return response
 
