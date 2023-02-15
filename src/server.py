@@ -19,7 +19,7 @@ def main():
 
     logging.info("Registering handlers")
     application.add_handler(start_handler)
-    # application.add_handler(register_handler)
+    application.add_handler(register_handler)
     application.add_handler(get_sheet_data_handler)
     application.add_handler(unknown_handler)
 
